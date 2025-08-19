@@ -56,8 +56,11 @@ const DragBox = ({initialFiles, form, type}:DragBoxProps) => {
           MIME_TYPES.svg,
           MIME_TYPES.pdf,
           MIME_TYPES.zip,
+           "image/*",          // orice imagine (png, jpg, svg, webp, etc.)
+          "video/*",          // orice video (mp4, mov, mkv, etc.)
+          "audio/*",          // orice audio (mp3, wav, m4a, etc.)
         ]}
-        maxSize={10 * 1024 ** 2} // 10MB / file
+        maxSize={1000 * 1024 ** 2} // 10MB / file
         multiple
       >
         <Group
