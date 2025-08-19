@@ -1,5 +1,13 @@
 import type { UseFormReturnType } from "@mantine/form";
-export interface InfoContentProps {
+
+export interface BlockProps {
+  type:
+    | "intro"
+    | "outro"
+    | "watermark"
+    | "music"
+    | "box layovers"
+    | "instructions";
   form: UseFormReturnType<
     {
       address: string;

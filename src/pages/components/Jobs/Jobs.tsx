@@ -1,133 +1,42 @@
-import { Box,Modal,MultiSelect,Text} from "@mantine/core";
-import type {JobsProps} from './Jobs.d'
+import { Box, Modal } from "@mantine/core";
+import type { JobsProps } from "./Jobs.d";
 import InfoContent from "../InfoContent/InfoContent";
 import { useDisclosure } from "@mantine/hooks";
-import useStyles from "./Jobs.styled";
-import { useNavigate } from "react-router-dom";
+import Job from "../Job/Job";
+import { useForm } from "@mantine/form";
+import type { form } from "../Job/Job.d";
 
+// import useStyles from "./Jobs.styled";
+// const { classes, cx } = useStyles();
 
+const Jobs = ({ statusJobs }: JobsProps) => {
+  const [opened, { open, close }] = useDisclosure(false);
+  const form = useForm<form>({
+    mode: "uncontrolled",
+    initialValues: {
+      address: "",
+      userChoice: "User chose not have an outro",
+      imagesArray: [],
+      watermark: [],
+      musicFilesArray: [],
+      text: "User chose not have text layovers",
+      intructons: "Kindly start with the aerial view. This is a newly build show home. Please begin with an aerial view. If possible, try to cut the clips in time ith the rhythim of the song.",
+      videoLength: '09:00:00',
+      obs1: "Shot in order. But the drone clips come last because they ere shot last. They don't necessarlly have to come at the end.",
+      obs2: "User selected EXCLUDE SOME VIDEO CLIPS, you are allowing the editor to not include video clips that seem redundant to get your video don to a certain length without making it look reshed. They will only remove video clips they feed that are duplicate rooms or views of the same area.",
+    },
+  });
 
-const Jobs =({statusJobs}:JobsProps)=>{
-    const navigate = useNavigate();
-       const [opened, { open, close }] = useDisclosure(false);
-    const { classes, cx } = useStyles();
-    return <Box>{statusJobs?.map((job) => (
-        <Box key={job.jobId} className={classes.bodyBox}>
-          <Box className={classes.first}>
-            <Box>
-              <Text fw={600} span>
-                JOB ID:
-              </Text>
-              <Text span>{job.jobId}</Text>
-            </Box>
-            <Box>
-              <Text fw={600} span>
-                Created:
-              </Text>
-              <Text span>{job.created}</Text>
-            </Box>
-            <Box className={classes.timeZone}>
-              <Text className={classes.timeZoneText}  fw={600}>
-                {job.typeZone}
-              </Text>
-            </Box>
-          </Box>
-          <Box className={classes.second}>
-            <Box>
-              <Text fw={600} span>
-                Adress
-              </Text>
-              <Text span>{job.address}</Text>
-            </Box>
-            <Box>
-              <Text fw={600} span>
-                Service
-              </Text>
-              <Text span>{job.service}</Text>
-            </Box>
-          </Box>
-          <Box className={classes.third}>
-            <Box>
-              <Text fw={600} span>
-                Distributor ID:
-              </Text>
-              <Text span>{job.distribuitorID}</Text>
-            </Box>
-            <Box>
-              <Text fw={600} span>
-                BO Email:
-              </Text>
-              <Text span>{job.boEmail}</Text>
-            </Box>
-            <Box>
-              <Text fw={600} span>
-                Photographer Email:
-              </Text>
-              <Text span>{job.photographerEmail}</Text>
-            </Box>
-            <Box>
-              <Text span>Source Files:</Text>
-              <Text span>{job.source}</Text>
-            </Box>
-            <Box>
-              <Text fw={600} span>
-                Intructons:
-              </Text>
-              <Text span>{job.intructions}</Text>
-            </Box>
-            <Box>
-              <Text fw={600} span>
-                Length Of Video:
-              </Text>
-              <Text span>{job.length}</Text>
-            </Box>
-          </Box>
-          <Box className={classes.fourth}>
-            <Text fw={600} span>
-              Order Of Video Clips
-            </Text>
-            <Text span>{job.orderClips}</Text>
-            <Box>{job.job}</Box>
-            <Box>{job.sinn}</Box>
-          </Box>
-          <Box className={classes.fifth}>
-            <MultiSelect
-              data={job.workerList.map((w) => ({
-                value: w.id,
-                label: `${w.firstName} ${w.lastName}`,
-              }))}
-              searchable
-              comboboxProps={{
-                withinPortal: true,
-                zIndex: 10000,
-                position: "bottom-start",
-              }}
-            />
-          </Box>
-          <Box className={classes.sixth}>
-            <Box>
-            <Box className={cx(classes.btnOption, classes.assign, )}  maw='90px' >Assign Job</Box>
-            <Box className={cx(classes.btnOption, classes.view, )} 
-              onClick={() => {
-                // navigate("/info-page");
-                open()
-              }}
-              maw='80px'
-            >
-              Job View
-            </Box>
-            </Box>
-            <Box 
-            className={cx(classes.btnOption, classes.complete, )}
-          >
-              Complete Job
-              </Box>
-          </Box>
-        </Box>
+  return (
+    <Box>
+      {statusJobs?.map((job) => (
+        <Job job={job} open={open} form={form} />
       ))}
-      <Modal opened={opened} onClose={close}>
-        <InfoContent />
-      </Modal></Box>
-}
+      <Modal opened={opened} fullScreen onClose={close}>
+        <InfoContent form={form} />
+      </Modal>
+    </Box>
+  );
+};
 
-export default Jobs
+export default Jobs;

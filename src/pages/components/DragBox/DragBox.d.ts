@@ -1,11 +1,14 @@
 import type { UseFormReturnType } from "@mantine/form";
-export interface InfoContentProps {
+
+export interface DragBoxProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  initialFiles: any[];
   form: UseFormReturnType<
     {
       address: string;
       userChoice: string;
       imagesArray: never[];
-      watermark: []
+      watermark: [];
       musicFilesArray: never[];
       text: string;
       intructons: string;
@@ -17,7 +20,7 @@ export interface InfoContentProps {
       address: string;
       userChoice: string;
       imagesArray: never[];
-      watermark: []
+      watermark: [];
       musicFilesArray: never[];
       text: string;
       intructons: string;
@@ -28,7 +31,7 @@ export interface InfoContentProps {
       address: string;
       userChoice: string;
       imagesArray: never[];
-      watermark: []
+      watermark: [];
       musicFilesArray: never[];
       text: string;
       intructons: string;
@@ -37,4 +40,5 @@ export interface InfoContentProps {
       obs2: string;
     }
   >;
+  type:string
 }

@@ -1,5 +1,7 @@
 import type { UseFormReturnType } from "@mantine/form";
-export interface InfoContentProps {
+
+export interface TextAreaBlockProps {
+  value: string;
   form: UseFormReturnType<
     {
       address: string;
@@ -37,4 +39,5 @@ export interface InfoContentProps {
       obs2: string;
     }
   >;
+  type:string
 }
