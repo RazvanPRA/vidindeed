@@ -1,7 +1,8 @@
 import type { UseFormReturnType } from "@mantine/form";
 
-export interface MultiInputProps {
-  options: string[];
+export interface ModalCostumProps {
+  opened: boolean;
+  closeModal: () => void;
   formJobs: UseFormReturnType<
     {
       jobs: {
@@ -24,7 +25,7 @@ export interface MultiInputProps {
       }[];
     }
   >;
-  onTable?: boolean;
   onValue?: boolean;
   onAssign?: boolean;
+  options:string[]
 }

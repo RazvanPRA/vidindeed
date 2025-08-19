@@ -14,6 +14,7 @@ import useStyles from "./AdminPage.style";
 import logo from "../../assets/svg/LOGO.jpg";
 import IconChevronDown from "../../assets/icons/ChevronDown";
 import ContentJobs from "../components/ContentJobs/ContentJobs";
+import { jobLabels } from "../../const/label";
 
 const btns = ["Video", "Revisions", "Reels", "Reels Revision"];
 const adminOptions = ["Dashboard", "User Management", "Settings", "Logout"];
@@ -40,8 +41,7 @@ const AdminPage = () => {
   return (
     <Box className={classes.content}>
       <Box className={classes.top}>
-        <Image src={logo} alt="LOGO"  h={40}
-      w="auto" />
+        <Image src={logo} alt="LOGO" h={40} w="auto" />
         <Box className={classes.center}>
           <Menu withArrow>
             <Menu.Target>
@@ -59,16 +59,18 @@ const AdminPage = () => {
               ))}
             </Menu.Dropdown>
           </Menu>
-
-          <Box>Jobs List</Box>
-          <Box>Order List</Box>
-          <Box>Video Stats</Box>
-          <Box>Video Editor Stats</Box>
-          <Button mt="md" onClick={logout}>
-            Logout
-          </Button>
+          {jobLabels.header.map((i, j) =>
+            j !== jobLabels.header.length-1 ? (
+              <Box key={i+j} >{i}</Box>
+            ) : (
+              <Button mt="md" onClick={logout}>
+               {i}
+              </Button>
+            )
+          )}
+          <Box></Box>
         </Box>
-        <Box className={classes.admin}>Administrator</Box>
+        <Box>{jobLabels.administrator}</Box>
       </Box>
 
       <Box className={classes.header}>
@@ -90,11 +92,11 @@ const AdminPage = () => {
       <Divider style={{ height: "1px", margin: "0px 20px" }} bg="#d4d4d4ff" />
       <Box className={classes.searchContainer}>
         <Box className={classes.searchBox}>
-          <Text className={classes.textBox}>Search By Address: </Text>
+          <Text className={classes.textBox}>{jobLabels.searchAddresLabel}</Text>
           <Input className={classes.input} />
         </Box>
         <Box className={classes.searchBox} style={{ marginLeft: "20px" }}>
-          <Text className={classes.textBox}>Search By ID: </Text>
+          <Text className={classes.textBox}>{jobLabels.searchIdLabel}</Text>
           <Input className={classes.input} />
         </Box>
       </Box>

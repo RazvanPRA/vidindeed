@@ -2,6 +2,7 @@ import { Box, Divider, ScrollArea } from "@mantine/core";
 import useStyles from "./ContentJobs.style";
 import { jobs } from "../../../fakedata";
 import Jobs from "../Jobs/Jobs";
+import { jobLabels } from "../../../const/label";
 
 interface ContentJobsProps {
   status: string;
@@ -16,16 +17,16 @@ const ContentJobs = ({ status }: ContentJobsProps) => {
     <Box className={classes.content}>
       <Box className={classes.headerBox}>
         <Box fw={600} className={classes.date}>
-          Date
+          {jobLabels.contentJobs.date}
         </Box>
         <Box fw={600} className={classes.service}>
-          Service
+          {jobLabels.contentJobs.service}
         </Box>
         <Box fw={600} className={classes.link}>
-          Photografher/Link
+          {jobLabels.contentJobs.photo}
         </Box>
         <Box fw={600} className={classes.status}>
-          Status
+          {jobLabels.contentJobs.status}
         </Box>
         <Box fw={600} className={classes.select}></Box>
         <Box fw={600} className={classes.btnZone}></Box>

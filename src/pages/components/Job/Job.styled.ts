@@ -25,10 +25,11 @@ const useStyles = createStyles(() => {
     },
     timeZoneText: { textAlign: "center" },
     second: { width: "10%" },
-    third: { width: "40%" },
-    fourth: { width: "10%" },
-    fifth: { width: "20%" },
-    sixth: {
+    third: { width: "45%" },
+    fourth:{width:'5%'},
+    fifth: { width: "10%" },
+    sixth: { width: "20%" },
+    seventh: {
       width: "10%",
       display: "flex",
       flexDirection: "column",

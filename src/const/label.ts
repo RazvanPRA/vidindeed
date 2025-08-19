@@ -37,4 +37,37 @@ export const jobLabels = {
     excludeClips:
       "User selected EXCLUDE SOME VIDEO CLIPS, you are allowing the editor to not include video clips that seem redundant to get your video don to a certain length without making it look reshed. They will only remove video clips they feed that are duplicate rooms or views of the same area.",
   },
+  header: [
+    "Jobs List",
+    "Order List",
+    "Video Stats",
+    "Video Editor Stats",
+    "Logout",
+  ],
+  administrator:"Administrator",
+  searchAddresLabel:'Search By Address: ',
+  searchIdLabel:'Search By ID: ',
+  contentJobs:{
+    date:"Date",
+    service:'Service',
+    photo:'Photografher/Link',
+    status:'Status'
+  },
+  contentJob:{
+    idLabel:'JOB ID: ',
+    dateLabel:'Created: ',
+    addressLabel:'Adress',
+    serviceLabel:'Service',
+    idDistributorLabelId:'Distributor ID: ',
+    boLabel:'BO Email: ',
+    emailLabel:'Photographer Email: ',
+filesLabel:'Source Files: ',
+instructionLabel:'Intructons: ',
+lengthLabel:'Length Of Video: ',
+orderLabel:'Order Of Video Clips',
+jobLabel:'Assign Job',
+viewValue:'Job View',
+viewLabel:'Job View',
+doneLabel:'Complete Job'
+  }
 };
