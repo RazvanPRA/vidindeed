@@ -1,6 +1,7 @@
 import type { UseFormReturnType } from "@mantine/form";
 
 export interface BlockProps {
+  allow?:'Worker';
   type:
     | "intro"
     | "outro"

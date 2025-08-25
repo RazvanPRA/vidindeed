@@ -21,7 +21,6 @@ const MultiInput = ({
   const removeJob = (index: number) => formJobs.removeListItem("jobs", index);
   // const insertAt = (index: number) =>
   //   formJobs.insertListItem('jobs', { value: 0, typeJob: options[0] }, index);
-  console.log(formJobs.getValues().jobs[0].typeJob);
 
   return (
     <Box className={classes.box}>
@@ -65,13 +64,19 @@ const MultiInput = ({
                 </option>
               ))}
             </Input>
-            {onTable  ? (
+            {onTable ? (
               <Delete remove={() => removeJob(j)} />
             ) : (
-            onAssign&&  <Box className={classes.groupBtn} >
-                <Approve onClick={()=>formJobs.setFieldValue(approvedPath, true)}  />
-                <Remove onClick={()=>formJobs.setFieldValue(approvedPath, false)}/>
-              </Box>
+              onAssign && (
+                <Box className={classes.groupBtn}>
+                  <Approve
+                    onClick={() => formJobs.setFieldValue(approvedPath, true)}
+                  />
+                  <Remove
+                    onClick={() => formJobs.setFieldValue(approvedPath, false)}
+                  />
+                </Box>
+              )
             )}
           </Box>
         );

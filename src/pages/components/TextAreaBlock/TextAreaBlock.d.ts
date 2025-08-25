@@ -2,6 +2,7 @@ import type { UseFormReturnType } from "@mantine/form";
 
 export interface TextAreaBlockProps {
   value: string;
+  allow?:'Worker';
   form: UseFormReturnType<
     {
       address: string;

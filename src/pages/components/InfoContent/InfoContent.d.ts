@@ -37,4 +37,6 @@ export interface InfoContentProps {
       obs2: string;
     }
   >;
+
+type?:'Worker'
 }

@@ -19,7 +19,9 @@ export const LoginPage = () => {
 
   return (
     <Box className={classes.card}>
-      <Image src={logo} alt="LOGO" width={200} />
+      <Box style={{ width: "0px !important" }}>
+        <Image src={logo} alt="LOGO" width={"50px"} />
+      </Box>
       <form onSubmit={handleSubmit}>
         <Box className={classes.box}>
           <TextInput
@@ -51,7 +53,7 @@ export const LoginPage = () => {
               see ? <Eye onClick={setSee} /> : <EyeOff onClick={setSee} />
             }
           />
-          <Button className={classes.signBtn} fullWidth mt="xl" type="submit">
+          <Button className={classes.signBtn} type="submit">
             Sign in
           </Button>
           <Box className={classes.fwBtn}>Forgot password?</Box>

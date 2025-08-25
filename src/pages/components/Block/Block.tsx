@@ -8,12 +8,13 @@ import TextAreaBlock from "../TextAreaBlock/TextAreaBlock";
 import DragBox from "../DragBox/DragBox";
 // import useTimePickerStyles from "./useTimePickerStyles";
 
-const Block = ({ type, form }: BlockProps) => {
+const Block = ({ type, form, allow }: BlockProps) => {
   const [clockView, setClockView] = useState(false);
   const [musicBoxView, setMusicBoxView] = useState(false);
   const [watermarkBoxView, setWatermarkBoxView] = useState(false);
   const [imagesView, setImagesView] = useState(false);
   const { classes } = useStyles();
+
   const blockType = (type: string) => {
     const typesArray = [
       "intro",
@@ -32,6 +33,7 @@ const Block = ({ type, form }: BlockProps) => {
             <TextAreaBlock
               value={form.values.address}
               form={form}
+              allow={allow}
               type={"address"}
             />
           </Box>
@@ -48,7 +50,7 @@ const Block = ({ type, form }: BlockProps) => {
             />
             <Box
               className={classes.subTitle}
-              onClick={() => setImagesView((state) => !state)}
+              onClick={() => !allow && setImagesView((state) => !state)}
             >
               {jobLabels.outro.subtitleImage}
             </Box>
@@ -57,7 +59,13 @@ const Block = ({ type, form }: BlockProps) => {
                 ? form.values.imagesArray
                 : jobLabels.outro.agentImage}
             </Box>
-            {imagesView && <DragBox form={form} initialFiles={form.values.imagesArray} type={'imagesArray'} />}
+            {imagesView && (
+              <DragBox
+                form={form}
+                initialFiles={form.values.imagesArray}
+                type={"imagesArray"}
+              />
+            )}
             <Box>{jobLabels.outro.outroInstruction}</Box>
           </Box>
         );
@@ -66,7 +74,7 @@ const Block = ({ type, form }: BlockProps) => {
           <Box className={classes.block}>
             <Box className={classes.title}>{jobLabels.watermark.title}</Box>
             <Box
-              onClick={() => setWatermarkBoxView((state) => !state)}
+              onClick={() => !allow && setWatermarkBoxView((state) => !state)}
               className={classes.subTitle}
             >
               {jobLabels.watermark.subtitle}
@@ -77,7 +85,11 @@ const Block = ({ type, form }: BlockProps) => {
                 : jobLabels.watermark.value}
             </Box>
             {watermarkBoxView && (
-              <DragBox form={form} initialFiles={form.values.watermark} type={'watermark'} />
+              <DragBox
+                form={form}
+                initialFiles={form.values.watermark}
+                type={"watermark"}
+              />
             )}
           </Box>
         );
@@ -86,7 +98,7 @@ const Block = ({ type, form }: BlockProps) => {
           <Box className={classes.block}>
             <Box className={classes.title}>{jobLabels.music.title}</Box>
             <Box
-              onClick={() => setMusicBoxView((state) => !state)}
+              onClick={() => !allow && setMusicBoxView((state) => !state)}
               className={classes.subTitle}
             >
               {jobLabels.music.subtitle}
@@ -97,7 +109,11 @@ const Block = ({ type, form }: BlockProps) => {
                 : jobLabels.music.file}
             </Box>
             {musicBoxView && (
-              <DragBox form={form} initialFiles={form.values.musicFilesArray} type={'musicFilesArray'} />
+              <DragBox
+                form={form}
+                initialFiles={form.values.musicFilesArray}
+                type={"musicFilesArray"}
+              />
             )}
           </Box>
         );
@@ -127,22 +143,23 @@ const Block = ({ type, form }: BlockProps) => {
               value={form.values.intructons}
               form={form}
               type={"intructons"}
+              allow={allow}
             />
             <Box className={classes.subTitle}>
               {jobLabels.specialInstructions.subtitleLength}
             </Box>
             {!clockView ? (
               <Box
-                onClick={() => {
-                  setClockView((state: boolean) => !state);
-                }}
+                onClick={() =>
+                  !allow && setClockView((state: boolean) => !state)
+                }
               >
                 {form.values.videoLength} {`(hh:mm:ss)`}
               </Box>
             ) : (
               <Box display="flex" style={{ justifyContent: "flex-start" }}>
                 <TimePicker
-                  onBlur={() => setClockView((state: boolean) => !state)}
+                  onBlur={() => !allow&& setClockView((state: boolean) => !state)}
                   classNames={{
                     root: classes.root,
                     field: classes.field,
@@ -159,8 +176,8 @@ const Block = ({ type, form }: BlockProps) => {
             <Box className={classes.subTitle}>
               {jobLabels.specialInstructions.subtitleClips}
             </Box>
-            <TextAreaBlock value={form.values.obs1} form={form} type={"obs1"} />
-            <TextAreaBlock value={form.values.obs2} form={form} type={"obs2"} />
+            <TextAreaBlock allow={allow} value={form.values.obs1} form={form} type={"obs1"} />
+            <TextAreaBlock allow={allow} value={form.values.obs2} form={form} type={"obs2"} />
           </Box>
         );
     }
