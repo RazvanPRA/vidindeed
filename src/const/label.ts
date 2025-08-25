@@ -66,7 +66,7 @@ instructionLabel:'Intructons: ',
 lengthLabel:'Length Of Video: ',
 orderLabel:'Order Of Video Clips',
 jobLabel:'Assign Job',
-viewValue:'Job View',
+viewValue:'Set Price',
 viewLabel:'Job View',
 doneLabel:'Complete Job'
   }
